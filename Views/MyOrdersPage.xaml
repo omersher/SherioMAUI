@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Model;assembly=Model"
+             x:Class="SherioMAUI.Views.MyOrdersPage"
+             Title="ההזמנות שלי"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F3F4F6"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="70,*">
+
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              BackgroundColor="White"
+              Padding="20,20,20,10">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                <Button Text="←"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        BackgroundColor="#F3F4F6"
+                        TextColor="#111827"
+                        FontSize="20"
+                        Clicked="Back_Click"/>
+
+                <Label Grid.Column="1"
+                       Text="ההזמנות שלי"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#111827"/>
+
+                <BoxView Grid.Column="2" WidthRequest="44" Opacity="0"/>
+            </Grid>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" Padding="16">
+
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsVisible="False"
+                               IsRunning="False"
+                               Color="#2563EB"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+            <Label x:Name="EmptyLabel"
+                   Text="אין לך הזמנות עדיין"
+                   IsVisible="False"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="18"
+                   TextColor="#6B7280"/>
+
+            <CollectionView x:Name="OrdersCollection"
+                            SelectionMode="None"
+                            IsVisible="False">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="14"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Booking">
+                        <Frame BackgroundColor="White"
+                               CornerRadius="18"
+                               Padding="18"
+                               HasShadow="True"
+                               BorderColor="#E5E7EB"
+                               Margin="0,0,0,4">
+
+                            <VerticalStackLayout Spacing="14">
+
+                                <!-- Header -->
+                                <Grid ColumnDefinitions="Auto,Auto,*"
+                                      ColumnSpacing="10">
+
+                                    <Border Padding="10,5"
+                                            StrokeShape="RoundRectangle 12"
+                                            BackgroundColor="#E5E7EB">
+                                        <Label Text="{Binding Status}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="#111827"/>
+                                    </Border>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Id, StringFormat='הזמנה #{0}'}"
+                                           VerticalOptions="Center"
+                                           FontSize="13"
+                                           FontAttributes="Bold"
+                                           TextColor="#2563EB"/>
+
+                                    <Label Grid.Column="2"
+                                           Text="{Binding RoomID, StringFormat='חדר מספר {0}'}"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#374151"/>
+                                </Grid>
+
+                                <BoxView HeightRequest="1"
+                                         Color="#EEEEEE"/>
+
+                                <!-- Dates -->
+                                <Grid ColumnDefinitions="*,*"
+                                      ColumnSpacing="12">
+
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="צ'ק-אין"
+                                               FontSize="12"
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding StartDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#111827"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="4">
+                                        <Label Text="צ'ק-אאוט"
+                                               FontSize="12"
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding EndDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#111827"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Guests -->
+                                <Grid ColumnDefinitions="*,*"
+                                      ColumnSpacing="12">
+
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="מבוגרים"
+                                               FontSize="12"
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding AdultCount}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#111827"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="4">
+                                        <Label Text="ילדים"
+                                               FontSize="12"
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding ChildCount}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#111827"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Created At -->
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="נוצר בתאריך"
+                                           FontSize="12"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding CreatedAt, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                           FontSize="14"
+                                           TextColor="#111827"/>
+                                </VerticalStackLayout>
+
+                                <!-- Cancel Button -->
+                                <Button Text="בטל הזמנה"
+                                        BackgroundColor="#EF4444"
+                                        TextColor="White"
+                                        HeightRequest="46"
+                                        CornerRadius="14"
+                                        FontAttributes="Bold"
+                                        Clicked="CancelBooking_Click"
+                                        CommandParameter="{Binding}">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding Status}"
+                                                     Value="Cancelled">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

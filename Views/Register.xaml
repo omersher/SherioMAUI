@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.Register"
+             FlowDirection="RightToLeft"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <Grid HeightRequest="250">
+                <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <UriImageSource Uri="https://cwc-strategy.com/wp-content/uploads/2016/07/jer.jpg"
+            CachingEnabled="True"
+            CacheValidity="7.00:00:00"/>
+                    </Image.Source>
+                </Image>
+                <BoxView Color="#66000000"/>
+                <Label Text="SHERIO"
+                       TextColor="White"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <VerticalStackLayout Padding="30" Spacing="15">
+                <Label Text="יצירת חשבון"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="#111827"/>
+
+                <Label Text="הצטרפו למשפחת SHERIO המתרחבת"
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       Margin="0,0,0,10"/>
+
+                <Entry x:Name="FullNameEntry"
+                       Placeholder="שם מלא" />
+
+                <Entry x:Name="IdEntry"
+                       Placeholder="תעודת זהות"
+                       Keyboard="Numeric" />
+
+                <Entry x:Name="EmailEntry"
+                       Placeholder="אימייל"
+                       Keyboard="Email" />
+
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="סיסמה"
+                       IsPassword="True" />
+
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsVisible="False"
+                                   IsRunning="False"
+                                   Color="#111827"
+                                   HorizontalOptions="Center" />
+
+                <Button x:Name="RegisterButton"
+                        Text="הרשמה"
+                        BackgroundColor="#111827"
+                        TextColor="White"
+                        HeightRequest="50"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        Margin="0,10,0,0"
+                        Clicked="CreateAccount_Click"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10">
+                    <Label Text="כבר יש לך חשבון?" VerticalOptions="Center" />
+                    <Button Text="התחברות"
+                            BackgroundColor="Transparent"
+                            TextColor="#2563EB"
+                            Clicked="Login_Click"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

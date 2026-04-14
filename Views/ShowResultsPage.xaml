@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.ShowResultsPage"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F8FAFC"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid BackgroundColor="White" Padding="20,18" ColumnDefinitions="Auto,*">
+            <Button Text="←"
+                    BackgroundColor="Transparent"
+                    TextColor="#111827"
+                    FontSize="22"
+                    WidthRequest="44"
+                    Clicked="Back_Click"/>
+
+            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                <Label Text="תוצאות חיפוש"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#111827"/>
+                <Label x:Name="ResultsInfoLabel"
+                       Text="נמצאו מלונות"
+                       FontSize="13"
+                       TextColor="#6B7280"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <CollectionView Grid.Row="1"
+                        x:Name="HotelsCollectionView"
+                        Margin="14,10,14,14"
+                        SelectionMode="None">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="30" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="לא נמצאו מלונות"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#111827"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="נסה לבחור עיר או תאריכים אחרים"
+                           FontSize="14"
+                           TextColor="#6B7280"
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="18"
+                           HasShadow="True"
+                           Padding="0"
+                           Margin="0,0,0,14"
+                           BackgroundColor="White"
+                           BorderColor="#EEF2F7">
+
+                        <VerticalStackLayout Spacing="0">
+                            <Grid HeightRequest="190">
+                                <Image Source="{Binding MainHotelImageLink}"
+                                       Aspect="AspectFill"/>
+
+                                <Grid BackgroundColor="#22000000"/>
+
+                                <Frame BackgroundColor="#CCFFFFFF"
+                                       CornerRadius="10"
+                                       Padding="10,6"
+                                       Margin="12"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start">
+                                    <Label Text="{Binding StarRating, StringFormat='דירוג {0}★'}"
+                                           FontSize="12"
+                                           TextColor="#111827"/>
+                                </Frame>
+                            </Grid>
+
+                            <VerticalStackLayout Padding="16" Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#111827"/>
+
+                                <Label Text="{Binding City.CityName}"
+                                       FontSize="14"
+                                       TextColor="#6B7280"/>
+
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Frame BackgroundColor="#EFF6FF"
+                                           CornerRadius="12"
+                                           Padding="10"
+                                           HasShadow="False">
+                                        <Label Text="{Binding StreetAddress}"
+                                               FontSize="13"
+                                               TextColor="#1D4ED8"/>
+                                    </Frame>
+
+                                    <Frame Grid.Column="1"
+                                           BackgroundColor="#F0FDF4"
+                                           CornerRadius="12"
+                                           Padding="10"
+                                           HasShadow="False">
+                                        <Label Text="זמין להזמנה"
+                                               FontSize="13"
+                                               TextColor="#15803D"
+                                               HorizontalTextAlignment="Center"/>
+                                    </Frame>
+                                </Grid>
+
+                                <Button Text="לצפייה בפרטים"
+                                        BackgroundColor="#2563EB"
+                                        TextColor="White"
+                                        CornerRadius="12"
+                                        HeightRequest="48"
+                                        FontAttributes="Bold"
+                                        Clicked="Details_Click"
+                                        CommandParameter="{Binding .}"/>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

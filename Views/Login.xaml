@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.Login"
+             FlowDirection="RightToLeft"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <Grid HeightRequest="250">
+                <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <UriImageSource Uri="https://www.packeasy.ch/cdn/shop/articles/1_INTRO_shutterstock_1242994654_02.jpg?v=1602770855"
+                                        
+            CachingEnabled="True"
+            CacheValidity="7.00:00:00"/>
+                    </Image.Source>
+                </Image>
+                <BoxView Color="#66000000"/>
+                <Label Text="SHERIO"
+                       TextColor="White"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <VerticalStackLayout Padding="30" Spacing="15">
+                <Label Text="התחברות"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="#111827"/>
+
+                <Label Text="ברוך הבא, הכנס את פרטי המשתמש שלך"
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       Margin="0,0,0,10"/>
+
+                <Entry x:Name="EmailEntry"
+                       Placeholder="אימייל"
+                       Keyboard="Email" />
+
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="סיסמה"
+                       IsPassword="True" />
+
+                <Button Text="התחברות"
+                        BackgroundColor="#111827"
+                        TextColor="White"
+                        HeightRequest="50"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        Margin="0,10,0,0"
+                        Clicked="Login_Click"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10">
+                    <Label Text="אין לך חשבון?" VerticalOptions="Center" />
+                    <Button Text="הרשמה"
+                            BackgroundColor="Transparent"
+                            TextColor="#2563EB"
+                            Clicked="Register_Click"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+    

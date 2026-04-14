@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.Success"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F8FAFC"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Frame BackgroundColor="White"
+               CornerRadius="26"
+               Padding="26"
+               Margin="24"
+               VerticalOptions="Center"
+               HasShadow="True"
+               BorderColor="#EEF2F7">
+            <VerticalStackLayout Spacing="18"
+                                 HorizontalOptions="Center">
+                <Label Text="✓"
+                       FontSize="82"
+                       TextColor="#10B981"
+                       HorizontalTextAlignment="Center"/>
+
+                <Label Text="ההזמנה בוצעה בהצלחה!"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#111827"
+                       HorizontalTextAlignment="Center"/>
+
+                <Label Text="תודה שבחרת SHERIO"
+                       FontSize="15"
+                       TextColor="#6B7280"
+                       HorizontalTextAlignment="Center"/>
+
+                <Frame BackgroundColor="#EFF6FF"
+                       CornerRadius="16"
+                       Padding="18"
+                       HasShadow="False">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="מזהה הזמנה"
+                               FontSize="13"
+                               TextColor="#6B7280"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="BookingIdLabel"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="#2563EB"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Button Text="חזרה לדף הבית"
+                        HeightRequest="52"
+                        CornerRadius="14"
+                        BackgroundColor="#0F172A"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Clicked="BackHome_Click"/>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

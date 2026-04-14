@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.HomePage"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F8FAFC"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="320,*">
+
+        <Grid Grid.Row="0">
+            <Image Aspect="AspectFill">
+                <Image.Source>
+                    <UriImageSource Uri="https://i0.wp.com/www.rejsrejsrejs.dk/wp-content/uploads/2025/04/Thailand.png"
+                        CachingEnabled="True"
+                        CacheValidity="7.00:00:00"/>
+                </Image.Source>
+            </Image>
+            <BoxView Color="#66000000"/>
+
+
+
+            <VerticalStackLayout Padding="24,60,24,24"
+                                 Spacing="12"
+                                 VerticalOptions="Start">
+                <Label Text="החופשה הבאה שלך&#10;מתחילה כאן"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20,-40,20,30"
+                                 Spacing="18">
+
+                <Frame BackgroundColor="White"
+                       CornerRadius="24"
+                       Padding="18"
+                       HasShadow="True"
+                       BorderColor="#EEF2F7">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label Text="בחר עיר"
+                               FontSize="14"
+                               TextColor="#6B7280"/>
+
+                        <Picker x:Name="CityPicker"
+                                Title="בחר עיר"
+                                ItemDisplayBinding="{Binding CityName}"
+                                BackgroundColor="#F9FAFB" />
+
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="10">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="תאריך כניסה"
+                                       FontSize="13"
+                                       TextColor="#6B7280"/>
+                                <DatePicker x:Name="CheckInPicker"
+                                            Format="dd/MM/yyyy"
+                                            BackgroundColor="#F9FAFB"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="6">
+                                <Label Text="תאריך יציאה"
+                                       FontSize="13"
+                                       TextColor="#6B7280"/>
+                                <DatePicker x:Name="CheckOutPicker"
+                                            Format="dd/MM/yyyy"
+                                            BackgroundColor="#F9FAFB"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Frame BackgroundColor="#F9FAFB"
+                               CornerRadius="18"
+                               Padding="14"
+                               HasShadow="False"
+                               BorderColor="#EEF2F7">
+
+                            <VerticalStackLayout Spacing="14">
+
+                                <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                      ColumnSpacing="10">
+                                    <Label Text="מבוגרים"
+                                           FontSize="16"
+                                           VerticalOptions="Center"/>
+
+                                    <Button Grid.Column="1"
+                                            Text="+"
+                                            WidthRequest="38"
+                                            HeightRequest="38"
+                                            CornerRadius="19"
+                                            BackgroundColor="#2563EB"
+                                            TextColor="White"
+                                            Clicked="PlusAdults_Click"/>
+
+                                    <Label x:Name="AdultsCountLabel"
+                                           Grid.Column="2"
+                                           Text="2"
+                                           WidthRequest="26"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="16"
+                                           FontAttributes="Bold"/>
+
+                                    <Button Grid.Column="3"
+                                            Text="-"
+                                            WidthRequest="38"
+                                            HeightRequest="38"
+                                            CornerRadius="19"
+                                            BackgroundColor="#E5E7EB"
+                                            TextColor="#111827"
+                                            Clicked="MinusAdults_Click"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                      ColumnSpacing="10">
+                                    <Label Text="ילדים"
+                                           FontSize="16"
+                                           VerticalOptions="Center"/>
+
+                                    <Button Grid.Column="1"
+                                            Text="+"
+                                            WidthRequest="38"
+                                            HeightRequest="38"
+                                            CornerRadius="19"
+                                            BackgroundColor="#2563EB"
+                                            TextColor="White"
+                                            Clicked="PlusChildren_Click"/>
+
+                                    <Label x:Name="ChildrenCountLabel"
+                                           Grid.Column="2"
+                                           Text="0"
+                                           WidthRequest="26"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="16"
+                                           FontAttributes="Bold"/>
+
+                                    <Button Grid.Column="3"
+                                            Text="-"
+                                            WidthRequest="38"
+                                            HeightRequest="38"
+                                            CornerRadius="19"
+                                            BackgroundColor="#E5E7EB"
+                                            TextColor="#111827"
+                                            Clicked="MinusChildren_Click"/>
+                                </Grid>
+
+                                <Label x:Name="GuestsSummaryLabel"
+                                       Text="2 מבוגרים, 0 ילדים"
+                                       FontSize="13"
+                                       TextColor="#6B7280"
+                                       HorizontalTextAlignment="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Button Text="חפש מלונות"
+                                HeightRequest="52"
+                                CornerRadius="14"
+                                BackgroundColor="#2563EB"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                Clicked="Search_Click"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <VerticalStackLayout Spacing="8"
+                                     Padding="6,0">
+                    <Label x:Name="WelcomeLabel"
+                           Text="שלום"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#111827"/>
+
+                    <Label Text="מצא מלונות לפי עיר, תאריכים וכמות אורחים"
+                           FontSize="14"
+                           TextColor="#6B7280"/>
+
+                    <Button Text="ההזמנות שלי"
+                            Margin="0,10,0,0"
+                            HeightRequest="50"
+                            CornerRadius="14"
+                            BackgroundColor="#2563EB"
+                            TextColor="White"
+                            Clicked="MyOrders_Click"/>
+
+                    <Button Text="התנתקות"
+                            Margin="0,10,0,0"
+                            HeightRequest="50"
+                            CornerRadius="14"
+                            BackgroundColor="#0F172A"
+                            TextColor="White"
+                            Clicked="Logout_Click"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.RoomDetailsPage"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F8FAFC"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid HeightRequest="260">
+            <Image x:Name="RoomImage"
+                   Aspect="AspectFill"/>
+            <BoxView Color="#55000000"/>
+
+            <Grid Padding="16,50,16,16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Text="←"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        BackgroundColor="#CCFFFFFF"
+                        TextColor="#111827"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        Clicked="Back_Click"/>
+
+                <VerticalStackLayout Grid.Row="1"
+                                     VerticalOptions="End"
+                                     Spacing="5">
+                    <Label x:Name="RoomNameLabel"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label x:Name="RoomHotelLabel"
+                           FontSize="15"
+                           TextColor="White"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,18,18,30"
+                                 Spacing="16">
+
+                <Frame BackgroundColor="White"
+                       CornerRadius="20"
+                       Padding="16"
+                       HasShadow="True"
+                       BorderColor="#EEF2F7">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="פרטי החדר"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#111827"/>
+
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="10">
+                            <Frame BackgroundColor="#EFF6FF"
+                                   CornerRadius="14"
+                                   Padding="12"
+                                   HasShadow="False">
+                                <VerticalStackLayout Spacing="3">
+                                    <Label Text="מחיר למבוגר"
+                                           FontSize="12"
+                                           TextColor="#6B7280"/>
+                                    <Label x:Name="AdultRateLabel"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="#2563EB"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <Frame Grid.Column="1"
+                                   BackgroundColor="#F0FDF4"
+                                   CornerRadius="14"
+                                   Padding="12"
+                                   HasShadow="False">
+                                <VerticalStackLayout Spacing="3">
+                                    <Label Text="מחיר לילד"
+                                           FontSize="12"
+                                           TextColor="#6B7280"/>
+                                    <Label x:Name="ChildRateLabel"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="#15803D"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+
+                        <Label x:Name="RoomInfoLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+
+                        <Label x:Name="RoomFeaturesLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White"
+                       CornerRadius="20"
+                       Padding="16"
+                       HasShadow="True"
+                       BorderColor="#EEF2F7">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="סיכום הזמנה"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#111827"/>
+
+                        <Label x:Name="StayDatesLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+
+                        <Label x:Name="GuestsLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+
+                        <Label x:Name="TotalEstimateLabel"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="#2563EB"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Button Text="המשך לתשלום"
+                        HeightRequest="52"
+                        CornerRadius="14"
+                        BackgroundColor="#2563EB"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Clicked="ContinueToCheckout_Click"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

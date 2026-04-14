@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SherioMAUI.Views.HotelDetailsPage"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F8FAFC"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid HeightRequest="280">
+            <Image x:Name="HotelImage"
+                   Aspect="AspectFill"/>
+            <BoxView Color="#55000000"/>
+
+            <Grid Padding="16,50,16,16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Text="←"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        BackgroundColor="#CCFFFFFF"
+                        TextColor="#111827"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        Clicked="Back_Click"/>
+
+                <VerticalStackLayout Grid.Row="1"
+                                     VerticalOptions="End"
+                                     Spacing="6">
+                    <Label x:Name="HotelNameLabel"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label x:Name="HotelCityLabel"
+                           FontSize="15"
+                           TextColor="White"/>
+
+                    <Label x:Name="HotelDatesLabel"
+                           FontSize="13"
+                           TextColor="#E5E7EB"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,18,18,30"
+                                 Spacing="16">
+
+                <Frame BackgroundColor="White"
+                       CornerRadius="20"
+                       Padding="16"
+                       HasShadow="True"
+                       BorderColor="#EEF2F7">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="פרטי המלון"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#111827"/>
+
+                        <Label x:Name="HotelAddressLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+
+                        <Label x:Name="HotelStarsLabel"
+                               FontSize="14"
+                               TextColor="#475569"/>
+
+                        <Grid ColumnDefinitions="*,*,*"
+                              ColumnSpacing="10">
+                            <Frame x:Name="PoolBadge"
+                                   BackgroundColor="#EFF6FF"
+                                   CornerRadius="14"
+                                   Padding="10"
+                                   HasShadow="False">
+                                <Label Text="בריכה"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#1D4ED8"/>
+                            </Frame>
+
+                            <Frame x:Name="GymBadge"
+                                   Grid.Column="1"
+                                   BackgroundColor="#F0FDF4"
+                                   CornerRadius="14"
+                                   Padding="10"
+                                   HasShadow="False">
+                                <Label Text="חדר כושר"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#15803D"/>
+                            </Frame>
+
+                            <Frame x:Name="RestaurantBadge"
+                                   Grid.Column="2"
+                                   BackgroundColor="#FFF7ED"
+                                   CornerRadius="14"
+                                   Padding="10"
+                                   HasShadow="False">
+                                <Label Text="מסעדה"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#C2410C"/>
+                            </Frame>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Label Text="חדרים זמינים"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="#111827"
+                       Margin="4,0,0,0"/>
+
+                <CollectionView x:Name="RoomsCollectionView"
+                                SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="30"
+                                             Spacing="10"
+                                             HorizontalOptions="Center">
+                            <Label Text="לא נמצאו חדרים במלון הזה"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#111827"
+                                   HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="White"
+                                   CornerRadius="18"
+                                   Padding="16"
+                                   Margin="0,0,0,14"
+                                   HasShadow="True"
+                                   BorderColor="#EEF2F7">
+
+                                <VerticalStackLayout Spacing="12">
+                                    <Label Text="{Binding RoomName}"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="#111827"/>
+
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="10">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="{Binding Bedrooms, StringFormat='חדרי שינה: {0}'}"
+                                                   FontSize="14"
+                                                   TextColor="#475569"/>
+                                            <Label Text="{Binding Bathrooms, StringFormat='חדרי רחצה: {0}'}"
+                                                   FontSize="14"
+                                                   TextColor="#475569"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Grid.Column="1"
+                                                             HorizontalOptions="End"
+                                                             Spacing="2">
+                                            <Label Text="{Binding AdultRate, StringFormat='₪{0:N0}'}"
+                                                   FontSize="24"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#2563EB"
+                                                   HorizontalTextAlignment="End"/>
+                                            <Label Text="ללילה למבוגר"
+                                                   FontSize="12"
+                                                   TextColor="#94A3B8"
+                                                   HorizontalTextAlignment="End"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <Button Text="לצפייה בחדר"
+                                            BackgroundColor="#2563EB"
+                                            TextColor="White"
+                                            HeightRequest="48"
+                                            CornerRadius="12"
+                                            FontAttributes="Bold"
+                                            Clicked="OpenRoom_Click"
+                                            CommandParameter="{Binding .}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
